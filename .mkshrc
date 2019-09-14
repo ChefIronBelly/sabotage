@@ -26,14 +26,14 @@ alias p='pwd'
 alias manb='man -H'
 alias grep='grep --color=auto'
 alias curl='curl -C - -LO'
-alias add='su butch install'
-alias upd='su butch update'
-alias search='su butch search'
+alias add='butch install'
+alias upd='butch update'
+alias search='butch search'
 
 # REBOOT/SHUTDOWN
-alias reboot='su /sbin/reboot'
-alias poweroff='su /sbin/poweroff'
-alias shutdown='su /sbin/halt'
+alias reboot='/sbin/reboot'
+alias poweroff='/sbin/poweroff'
+alias shutdown='/sbin/halt'
 
 # Space on drive
 alias disk='du -h | sort -n -r |more'
@@ -50,10 +50,10 @@ alias ping='ping -c3'
 alias mc='mc -a'
 alias g='git'
 alias gc='git commit -m "adds and tweaks"'
-alias umount='su umount /media/$1'
+alias umount='umount /media/$1'
 alias view='imlib2_view'
 alias grab='imlib2_grab'
-alias stime='su ntpd -dnq -p pool.ntp.org'
+alias stime='ntpd -dnq -p pool.ntp.org'
 
 PS1=""
  case `id -u` in
