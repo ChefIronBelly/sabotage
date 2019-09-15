@@ -18,7 +18,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const unsigned int gappx     = 8; 	/* gap pixel between windows */ 
 
 /* tagging */
-static const char *tags[] = { "term", "surf", "...", "....", "....." };
+static const char *tags[] = { "0001", "0010", "0011", "0100", "0101" };
 
 static const Rule rules[] = {
 	/* xprop(1):
