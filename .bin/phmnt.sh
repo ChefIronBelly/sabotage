@@ -1,4 +1,4 @@
 #! /bin/sh
 
-sudo modprobe fuse 2>/dev/null
-sudo simple-mtpfs --device 1 /media/phone
+su -c 'modprobe fuse 2>/dev/null'
+su -c ' simple-mtpfs --device 1 /mnt/phone'
