@@ -224,7 +224,6 @@ automake
 youtube-dl
 libflac
 libopus
-ffmpeg
 libass
 lua52
 mpv
@@ -232,3 +231,7 @@ libusbx
 libmtp
 nmap
 palemoon
+lame
+ffmpeg
+slock
+geany
