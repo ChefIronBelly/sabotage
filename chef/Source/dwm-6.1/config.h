@@ -18,7 +18,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const unsigned int gappx     = 8; 	/* gap pixel between windows */ 
 
 /* tagging */
-static const char *tags[] = { "0001", "0010", "0011", "0100", "0101" };
+static const char *tags[] = { "term", "surf", "edit", "file", "misc" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -27,7 +27,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Basilisk", NULL,       NULL,       1 << 1,       1,           -1 },
+	{ "Basilisk",  NULL,       NULL,       1 << 1,       1,           -1 },
+	{ "Geany",    NULL,       NULL,       1 << 2,    	0,           -1 },
 };
 
 /* layout(s) */
@@ -60,6 +61,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_start.sh", NULL };
 static const char *termcmd[]  = { "xst", NULL };
 static const char *surfcmd[]  = { "basilisk", NULL };
+static const char *editcmd[]  = { "geany", NULL };
 static const char *somacmd[]  = { "dmenu_soma.sh", NULL };
 static const char *volup[]    = { "volume.sh", "+", NULL };
 static const char *voldown[]  = { "volume.sh", "-", NULL };
@@ -70,6 +72,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          {.v = surfcmd } },
+	{ MODKEY|ShiftMask,             XK_g, 	   spawn,          {.v = editcmd } },
 	{ MODKEY|ShiftMask,             XK_r, 	   spawn,          {.v = somacmd } },	
 	{ MODKEY,			XK_F10,    spawn,          {.v = volup } },
 	{ MODKEY,			XK_F11,    spawn,          {.v = voldown } },

@@ -15,7 +15,7 @@ xset +fp ~/.fonts
 xset fp rehash
 
 xrdb < ~/.Xdefaults
-#xsidle.sh lock &
+xsidle.sh lock &
 
 xsetroot -cursor_name left_ptr
 #hsetroot -fill ~/Pictures/walls/traffic.jpg -blur .5
@@ -24,7 +24,7 @@ xsetroot -solid "$(xrdb -query | awk '/\*.color8/ {print $2}')"
 
 while true; do
 	xsetroot -name " $(date +"%a %b %d,") $(date +"%I:%M")"
-	sleep 70
+	sleep 60
 done &
 
 dwm_start.sh
