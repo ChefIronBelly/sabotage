@@ -9,6 +9,7 @@
 proc                   /proc         proc      defaults            0      0
 devpts                 /dev/pts      devpts    defaults            0      0
 shm                    /dev/shm      tmpfs     nodev,nosuid        0      0
-/dev/sdb3              /             ext4      defaults            0      1
-/dev/sdb2              swap          swap      defaults            0      0
+UUID=eedc6bce-7b6d-4cbd-a997-fd5d50c280d2              /             ext4      rw/relatime         0      1
+#UUID=a35f99a2-a8d4-4477-ae2f-087acc1f166b	       /boot         ext4      rw/relatime         0      2 
+UUID=0c112eec-9216-48b0-9058-ef8e4355e17d              swap          swap      defaults            0      0
 
