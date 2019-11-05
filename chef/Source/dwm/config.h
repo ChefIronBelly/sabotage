@@ -1,21 +1,23 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char *fonts[] = {
-	"menlo:size=10"
-};
-static const char dmenufont[]       = "menlo:size=10";
-static const char normbordercolor[] = "#2E3440";
-static const char normbgcolor[]     = "#2E3440";
-static const char normfgcolor[]     = "#D8DEE9";
-static const char selbordercolor[]  = "#81A1C1";
-static const char selbgcolor[]      = "#81A1C1";
-static const char selfgcolor[]      = "#2E3440";
-static const unsigned int borderpx  = 4;        /* border pixel of windows */
-static const unsigned int snap      = 4;        /* snap pixel */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int snap      = 8;       /* snap pixel */
+static const unsigned int gappx     = 8;        /* gap pixel between windows */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const unsigned int gappx     = 8; 	   /* gap pixel between windows */ 
+static const char *fonts[]          = { "menlo:size=10" };
+static const char dmenufont[]       = "menlo:size=10";
+static const char col_gray1[]       = "#3B4252";
+static const char col_gray2[]       = "#3B4252";
+static const char col_gray3[]       = "#E5E9F0";
+static const char col_gray4[]       = "#3b4251";
+static const char col_cyan[]        = "#81A1C1";
+static const char *colors[][3]      = {
+	/*               fg         bg         border   */
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+};
 
 /* tagging */
 static const char *tags[] = { "term", "surf", "edit", "file", "misc" };
@@ -27,14 +29,13 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Nightly",  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Geany",    NULL,       NULL,       1 << 2,    	0,           -1 },
+	{ "Basilisk", NULL,       NULL,       1 << 1,       1,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.52; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -58,15 +59,23 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_start.sh", NULL };
 static const char *termcmd[]  = { "xst", NULL };
-static const char *surfcmd[]  = { "firefox60", NULL };
+static const char *surfcmd[]  = { "Basilisk", NULL };
 static const char *editcmd[]  = { "geany", NULL };
+static const char *somacmd[]  = { "dmenu_soma.sh", NULL };
+static const char *volup[]    = { "volume.sh", "+", NULL };
+static const char *voldown[]  = { "volume.sh", "-", NULL };
+static const char *volmute[]  = { "volume.sh", "0", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          {.v = surfcmd } },
-	{ MODKEY|ShiftMask,             XK_g, 	   spawn,          {.v = editcmd } },
+        { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = surfcmd } },
+        { MODKEY|ShiftMask,             XK_g,      spawn,          {.v = editcmd } },
+        { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = somacmd } },
+        { MODKEY,                       XK_F10,    spawn,          {.v = volup } },
+        { MODKEY,                       XK_F11,    spawn,          {.v = voldown } },
+        { MODKEY,                       XK_F12,    spawn,          {.v = volmute } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -93,11 +102,15 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
-/* click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
